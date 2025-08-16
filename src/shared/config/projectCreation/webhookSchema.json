@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Creation Webhook Schema",
+  "description": "Webhook schema payload sent to n8n for project creation",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "The action to be performed by the webhook",
+      "enum": ["generate-project-attributes", "conversation-message"],
+      "default": "generate-project-attributes"
+    },
+    "projectName": {
+      "type": "string",
+      "description": "The name of the project to be created",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "goal": {
+      "type": "string",
+      "description": "The goal or objective of the project",
+      "minLength": 10,
+      "maxLength": 1000
+    },
+    "instructions": {
+      "type": "string",
+      "description": "The project expert instructions",
+      "minLength": 1
+    },
+    "finished": {
+      "type": "boolean",
+      "description": "Indicates if the conversation is finished and ready to finalize the project",
+      "default": false
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique session identifier for tracking the conversation"
+    }
+  },
+  "required": ["action", "projectName", "goal", "instructions", "finished"]
+}
